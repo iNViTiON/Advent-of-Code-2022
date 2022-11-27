@@ -7,6 +7,9 @@
   "license": "MIT",
   "type": "module",
   "packageManager": "yarn@3.3.0",
+  "engines": {
+    "node": ">=18.12.1 <19.0.0"
+  },
   "scripts": {
     "build": "yarn swc src/${0}/${1}.ts -s -d dist ${2:-}",
     "dev": "yarn swc src/${0}/${1}.ts -s -d dist & yarn concurrently -n build,serve -c green,auto \"yarn build ${0} ${1} -w\" \"yarn serve ${0} ${1}\"",
