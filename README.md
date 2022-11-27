@@ -1,6 +1,6 @@
 # [Advent of Code 2022](https://adventofcode.com/2022)
 
-[![CodeQL](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/codeql.yml/badge.svg)](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/codeql.yml)
 
 ## What is it?
 
