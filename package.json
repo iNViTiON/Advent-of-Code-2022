@@ -12,8 +12,8 @@
   },
   "scripts": {
     "build": "yarn swc src/${0}/${1}.ts -s -d dist ${2:-}",
-    "dev": "yarn swc src/${0}/${1}.ts -s -d dist & yarn concurrently -n build,serve -c green,auto \"yarn build ${0} ${1} -w\" \"yarn serve ${0} ${1}\"",
-    "serve": "yarn node --watch dist/${0}/${1}.js",
+    "dev": "yarn swc src/${0}/${1}.ts -s -d dist & yarn concurrently -n build,serve -c green,auto \"yarn build ${0} ${1} -w\" \"yarn serve ${0} ${1} ${2:-}\"",
+    "serve": "yarn node --watch dist/${0}/${1}.js ${2:-}",
     "update-sdks": "yarn dlx @yarnpkg/sdks vscode",
     "postinstall": "yarn update-sdks"
   },
