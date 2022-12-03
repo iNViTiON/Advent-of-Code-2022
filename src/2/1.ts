@@ -1,5 +1,5 @@
-import { createReadStream } from 'fs';
-import { createInterface } from 'readline/promises';
+import { createReadStream } from 'node:fs';
+import { createInterface } from 'node:readline/promises';
 import { from, map, reduce } from 'rxjs';
 
 const rl = createInterface({

@@ -1,5 +1,5 @@
-import { createReadStream } from 'fs';
-import { createInterface } from 'readline/promises';
+import { createReadStream } from 'node:fs';
+import { createInterface } from 'node:readline/promises';
 import { bufferCount, combineLatestWith, concat, filter, first, from, map, mergeAll, mergeMap, range, reduce, skip, switchMap, take, toArray } from 'rxjs';
 
 const rl = createInterface({
