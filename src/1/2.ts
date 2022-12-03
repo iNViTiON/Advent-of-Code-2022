@@ -1,9 +1,9 @@
 import { createReadStream } from 'fs';
 import { createInterface } from 'readline/promises';
-import { connect, filter, from, map, mergeMap, reduce, toArray, window } from 'rxjs';
+import { connect, filter, from, mergeMap, reduce, switchMap, take, toArray, window } from 'rxjs';
 
 const rl = createInterface({
-  input: createReadStream(process.argv[2]),
+  input: createReadStream(`./src/1/${process.argv[2]}.txt`),
 });
 
 from(rl).pipe(
@@ -14,5 +14,7 @@ from(rl).pipe(
     reduce((acc, item) => acc + +item, 0),
   )),
   toArray(),
-  map(sumCalories => (sumCalories.sort((a, b) => b - a).length = 3, sumCalories.reduce((acc, sumCal) => acc + sumCal, 0))),
-).subscribe(mostCalories => console.log('Most total Calories the Elf carrying is', mostCalories));
+  switchMap(sumCalories => sumCalories.sort((a, b) => b - a)),
+  take(3),
+  reduce((acc, sumCal) => acc + sumCal, 0),
+).subscribe(mostCalories => console.log('Top three of most total Calories the Elf carrying combined is', mostCalories));

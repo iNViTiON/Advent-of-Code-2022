@@ -3,7 +3,7 @@ import { createInterface } from 'readline/promises';
 import { connect, filter, from, max, mergeMap, reduce, window } from 'rxjs';
 
 const rl = createInterface({
-  input: createReadStream(process.argv[2]),
+  input: createReadStream(`./src/1/${process.argv[2]}.txt`),
 });
 
 from(rl).pipe(
