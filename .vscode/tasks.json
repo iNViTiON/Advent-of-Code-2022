@@ -1,0 +1,117 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "new day",
+      "type": "shell",
+      "command": "cp",
+      "args": ["src/${input:sourceDay}/*", "src/${input:inputDay}"],
+      "presentation": {
+        "echo": true,
+        "reveal": "never",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "esbuild",
+        "--bundle",
+        "--format=esm",
+        "--minify",
+        "--outfile=dist/main.js",
+        "--platform=node",
+        "--sourcemap",
+        "--allow-overwrite",
+        "--tree-shaking=true",
+        "${relativeFile}"
+      ],
+      "presentation": {
+        "group": "test"
+      }
+    },
+    {
+      "label": "build-watch",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "esbuild",
+        "--bundle",
+        "--format=esm",
+        "--minify",
+        "--outfile=dist/main.js",
+        "--platform=node",
+        "--sourcemap",
+        "--allow-overwrite",
+        "--tree-shaking=true",
+        "${relativeFile}",
+        "--watch"
+      ],
+      "presentation": {
+        "group": "test"
+      }
+    },
+    {
+      "label": "serve",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "--enable-source-maps",
+        "dist/main.js",
+        "${input:inputFileName}"
+      ],
+      "presentation": {
+        "group": "test"
+      }
+    },
+    {
+      "label": "serve-watch",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "--watch",
+        "--enable-source-maps",
+        "dist/main.js",
+        "${input:inputFileName}"
+      ],
+      "presentation": {
+        "group": "test"
+      },
+      "dependsOn": ["build"],
+      "runOptions": {
+        "instanceLimit": 6
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "dev",
+      "dependsOn": ["build-watch", "serve-watch"],
+      "dependsOrder": "parallel",
+      "runOptions": {
+        "instanceLimit": 6
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "inputFileName",
+      "description": "input file name",
+      "default": "ex",
+      "type": "promptString"
+    },
+    {
+      "id": "sourceDay",
+      "description": "base day for new day",
+      "type": "promptString"
+    },
+    {
+      "id": "inputDay",
+      "description": "new day",
+      "type": "promptString"
+    }
+  ]
+}
