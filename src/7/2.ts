@@ -49,27 +49,27 @@ const getAllSize = (dir: Ls): number[] =>
   [dir.size, ...Object.values(dir).filter((v): v is Ls => typeof v !== 'number')
     .flatMap(subDir => getAllSize(subDir))];
 
-    const terminalToRootTree = ({ root, path }: ReduceToTree, line: Line): ReduceToTree => {
-      const pwd = fromPath(root, path);
-      if (typeof pwd === 'number')
-        throw new Error(`${path.join('/')}/${pwd} is not a dir`);
-      if (isCommand(line)) {
-        if (isCommandCd(line)) {
-          if (line[2] === '/')
-            path.length = 0;
-          else if (line[2] === '..')
-            path.pop();
-          else
-            path.push(line[2]);
-        }
-      }
-      else if (isTerminalOutputFile(line)) {
-        const size = +line[0];
-        pwd[line[1]] = size;
-        increaseSizeInPath(root, path, size);
-      }
-      return { root, path };
-    };
+const terminalToRootTree = ({ root, path }: ReduceToTree, line: Line): ReduceToTree => {
+  const pwd = fromPath(root, path);
+  if (typeof pwd === 'number')
+    throw new Error(`${path.join('/')}/${pwd} is not a dir`);
+  if (isCommand(line)) {
+    if (isCommandCd(line)) {
+      if (line[2] === '/')
+        path.length = 0;
+      else if (line[2] === '..')
+        path.pop();
+      else
+        path.push(line[2]);
+    }
+  }
+  else if (isTerminalOutputFile(line)) {
+    const size = +line[0];
+    pwd[line[1]] = size;
+    increaseSizeInPath(root, path, size);
+  }
+  return { root, path };
+};
 
 line$.pipe(
   map(line => line.split(' ') as Line),
