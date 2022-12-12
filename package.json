@@ -6,7 +6,7 @@
   "author": "iNViTiON",
   "license": "MIT",
   "type": "module",
-  "packageManager": "yarn@3.3.0",
+  "packageManager": "yarn@4.0.0-rc.33",
   "engines": {
     "node": ">=18.12.1 <19.0.0"
   },
