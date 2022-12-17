@@ -1,5 +1,5 @@
 import { createReadStream } from 'node:fs';
-import { defer, delay, expand, filter, fromEvent, last, of, repeat, scan, takeWhile } from 'rxjs';
+import { defer, delay, expand, filter, fromEvent, of, reduce, repeat, takeWhile } from 'rxjs';
 
 const getRead = () => {
   const _readable = createReadStream(`./src/17/${process.argv[2]}.txt`, {
@@ -73,7 +73,7 @@ const rockLimit = 1000000000000;
 jet$.pipe(
   repeat(),
   takeWhile(() => rockIndex < rockLimit),
-  scan(({
+  reduce(({
     chamber,
     rock: [rock, rockLength],
     rockY,
@@ -144,7 +144,6 @@ jet$.pipe(
     rockDiff: 0,
     towerOffset: 0,
   } as State),
-  last(),
 ).subscribe(({ chamber, towerOffset }) => {
   console.log(
     `How tall will the tower be after ${rockIndex} rocks have stopped`,

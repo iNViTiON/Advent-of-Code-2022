@@ -1,5 +1,5 @@
 import { createReadStream } from 'node:fs';
-import { defer, delay, expand, filter, fromEvent, last, of, repeat, scan, takeWhile } from 'rxjs';
+import { defer, delay, expand, filter, fromEvent, of, reduce, repeat, takeWhile } from 'rxjs';
 
 const getRead = () => {
   const _readable = createReadStream(`./src/17/${process.argv[2]}.txt`, {
@@ -66,7 +66,7 @@ const isCollide = (chamber: number[], rock: number[], rockLength: number, rockX:
 jet$.pipe(
   repeat(),
   takeWhile(() => rockIndex < 2022),
-  scan(({ chamber, rock: [rock, rockLength], rockY, rockX }, jet) => {
+  reduce(({ chamber, rock: [rock, rockLength], rockY, rockX }, jet) => {
     chamber = [...chamber];
     const wantTo = jet === '>'
       ? Math.min(7 - rockLength, rockX + 1)
@@ -87,7 +87,6 @@ jet$.pipe(
     else --rockY;
     return { chamber, rock: [rock, rockLength] as [number[], number], rockY, rockX };
   }, { chamber: [0], rock: nextRock(), rockY: 3, rockX: 2 } as State),
-  last(),
 ).subscribe(({ chamber }) => {
   printChamber(chamber);
   console.log(`units tall will the tower of rocks be after ${rockIndex} rocks have stopped falling`, chamber.indexOf(0));
