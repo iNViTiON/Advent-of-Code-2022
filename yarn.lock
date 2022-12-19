@@ -386,7 +386,7 @@ __metadata:
     chokidar: "npm:^3.5.3"
     concurrently: "npm:^7.6.0"
     esbuild: "npm:^0.16.4"
-    rxjs: "npm:^7.6.0"
+    rxjs: "npm:^7.8.0"
     typescript: "npm:^4.9.4"
   languageName: unknown
   linkType: soft
@@ -1447,12 +1447,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.0.0, rxjs@npm:^7.6.0":
+"rxjs@npm:^7.0.0":
   version: 7.6.0
   resolution: "rxjs@npm:7.6.0"
   dependencies:
     tslib: "npm:^2.1.0"
   checksum: 061c02f4e345b803b8737e6853e401f6c571b6d82179a8966e196c096e458be3e1a50923f2ed0b65ff76a1ab70eff290ca4d6f50fba06a0daca3fc1fd7986c33
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.8.0":
+  version: 7.8.0
+  resolution: "rxjs@npm:7.8.0"
+  dependencies:
+    tslib: "npm:^2.1.0"
+  checksum: 56dfebbd1f868935809688075a33d940954a66ddec9ea3b92cc7031e50fc4040e9962416d5ca009b9da9e1edda6ff4f1fc3155786e7e521ec6eb3100e30f0317
   languageName: node
   linkType: hard
 
