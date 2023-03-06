@@ -380,10 +380,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.11.18":
+"@types/node@npm:*":
   version: 18.11.18
   resolution: "@types/node@npm:18.11.18"
   checksum: bd39552701928d4a1613bc46adf8b65f8212064c2b5475a67161b6c4cef21ddb0a5c2ba062673213f8f5301ef6e171241a9e274a9b59c9fc1f5e2b69764740eb
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.14.6":
+  version: 18.14.6
+  resolution: "@types/node@npm:18.14.6"
+  checksum: 4bbd9fe4cb1b31afe4f76b0b37fe51e46199dc57ab519811f61456cb267d7590323e6c687041f5a73872858d9eb64fdd158e9f669bbb36979d59ec7a91396dfa
   languageName: node
   linkType: hard
 
@@ -410,7 +417,7 @@ __metadata:
     "@swc/cli": "npm:^0.1.59"
     "@swc/core": "npm:^1.3.24"
     "@swc/helpers": "npm:^0.4.14"
-    "@types/node": "npm:^18.11.18"
+    "@types/node": "npm:^18.14.6"
     chokidar: "npm:^3.5.3"
     concurrently: "npm:^7.6.0"
     esbuild: "npm:^0.16.10"
