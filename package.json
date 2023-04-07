@@ -6,10 +6,6 @@
   "author": "iNViTiON",
   "license": "MIT",
   "type": "module",
-  "packageManager": "yarn@4.0.0-rc.34",
-  "engines": {
-    "node": ">=18.12.1 <19.0.0"
-  },
   "scripts": {
     "build-swc": "yarn swc src/${0}/${1}.ts -s -d dist ${2:-}",
     "build": "yarn esbuild --bundle --format=esm --minify --outfile=dist/main.js --platform=node --sourcemap --allow-overwrite --tree-shaking=true src/${0}/${1}.ts ${2:-}",
@@ -18,17 +14,22 @@
     "serve-swc": "yarn node --watch --enable-source-maps dist/${0}/${1}.js ${2:-}",
     "serve": "yarn node --watch --enable-source-maps dist/main.js ${0:-}",
     "update-sdks": "yarn dlx @yarnpkg/sdks vscode",
-    "postinstall": "yarn update-sdks"
+    "postinstall": "yarn update-sdks",
+    "volta-update": "volta pin --verbose node@lts && volta pin --verbose yarn@latest && yarn install --mode=update-lockfile"
   },
   "devDependencies": {
-    "@swc/cli": "^0.1.59",
-    "@swc/core": "^1.3.24",
-    "@swc/helpers": "^0.4.14",
-    "@types/node": "^18.11.18",
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.46",
+    "@swc/helpers": "^0.5.0",
+    "@types/node": "^18.15.11",
     "chokidar": "^3.5.3",
-    "concurrently": "^7.6.0",
-    "esbuild": "^0.16.10",
+    "concurrently": "^8.0.1",
+    "esbuild": "^0.17.15",
     "rxjs": "^7.8.0",
-    "typescript": "^4.9.4"
+    "typescript": "^5.0.3"
+  },
+  "volta": {
+    "node": "18.15.0",
+    "yarn": "4.0.0-rc.42"
   }
 }
