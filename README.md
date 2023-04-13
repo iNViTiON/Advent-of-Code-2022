@@ -1,6 +1,7 @@
 # [Advent of Code 2022](https://adventofcode.com/2022)
 
 [![CodeQL](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/codeql.yml/badge.svg)](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/codeql.yml)
+[![unit-test](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/ci.yml/badge.svg)](https://github.com/iNViTiON/Advent-of-Code-2022/actions/workflows/ci.yml)
 
 ## What is it?
 
