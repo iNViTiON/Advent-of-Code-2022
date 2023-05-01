@@ -33,7 +33,7 @@
     "concurrently": "^8.0.1",
     "esbuild": "^0.17.16",
     "globstar": "^1.0.0",
-    "tsx": "^3.12.6",
+    "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   },
   "volta": {
