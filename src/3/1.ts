@@ -1,10 +1,7 @@
 import { createReadStream } from 'node:fs';
 import { createInterface } from 'node:readline/promises';
 import { combineLatestWith, concat, distinct, filter, from, map, mergeMap, range, reduce, skip, switchMap, take } from 'rxjs';
-
-const rl = createInterface({
-  input: createReadStream(`./src/3/${process.argv[2]}.txt`),
-});
+import type { Observable } from 'rxjs';
 
 const itemTypePriorities$ = concat(
   range(97, 26),
@@ -13,17 +10,22 @@ const itemTypePriorities$ = concat(
   reduce((dict, codePoint, i) => dict.set(String.fromCodePoint(codePoint), i + 1), new Map<string, number>()),
 );
 
-from(rl).pipe(
-  mergeMap(line => from(line).pipe(
-    take(line.length / 2),
-    reduce((charSet, char) => charSet.add(char), new Set<string>()),
-    switchMap(charSet => from(line).pipe(
-      skip(line.length / 2),
-      distinct(),
-      filter(char => charSet.has(char)),
-    )),
-  )),
-  combineLatestWith(itemTypePriorities$),
-  map(([char, itemTypePriorities]) => itemTypePriorities.get(char) ?? 0),
-  reduce((acc, priority) => acc + priority, 0),
-).subscribe(sumOfPriorities => console.log('The sum of the priorities of error item types', sumOfPriorities));
+export const toResult = (path: string): Observable<number> =>
+  from(createInterface({
+    input: createReadStream(path),
+  })).pipe(
+    mergeMap(line => from(line).pipe(
+      take(line.length / 2),
+      reduce((charSet, char) => charSet.add(char), new Set<string>()),
+      switchMap(charSet => from(line).pipe(
+        skip(line.length / 2),
+        distinct(),
+        filter(char => charSet.has(char)),
+      )))),
+    combineLatestWith(itemTypePriorities$),
+    map(([char, itemTypePriorities]) => itemTypePriorities.get(char) ?? 0),
+    reduce((acc, priority) => acc + priority, 0),
+  );
+
+const file = process.argv[2];
+file && toResult(`./src/3/${file}.txt`).subscribe(sumOfPriorities => console.log('The sum of the priorities of error item types', sumOfPriorities));
