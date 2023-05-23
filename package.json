@@ -22,7 +22,7 @@
     "volta-update": "volta pin --verbose node@latest yarn && yarn install --mode=update-lockfile"
   },
   "dependencies": {
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
